@@ -1,0 +1,67 @@
+<div class="container"> 
+    <!-- <div class="container" style="width: 400px; float: left;">
+    <input type="text" placeholder="Search Product" class="form-control" [(ngModel)]="searchpro">
+    <button class="primary" type="button" (click)="searchList(searchpro)">Search</button>
+ </div><br><br> -->
+ <input type="text" [(ngModel)]="searchText" (keyup)="filterProducts()" placeholder="Search products">
+ <table class="table table-bordered" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Rating</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of filteredProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize)">
+            <td>{{list.id}}</td>
+            <td>{{list.title}}</td>
+            <td>{{list.price}}</td>
+            <td>{{list.description}}</td>
+            <td>{{list.description}}</td>
+            <td>{{list.image}}</td>
+            <td>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Rate</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{list.rating.rate}}</td>
+                            <td>{{list.rating.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+               <button type="button" (click)="update()">Update</button><br/><br/>
+               <button type="button" (click)="delete($event, list?.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+
+ 
+
+ </table>
+ <!-- <div col="12">   <mat-paginator [length]="100"
+    [pageSize]="3"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page">
+</mat-paginator></div> -->
+<!-- <div><pagination-controls (pageChange)="currentPage = $event"></pagination-controls></div> -->
+<div>
+    <button type="button" style="color: black;"  (click)="goToPage(currentPage+1)">Next Page</button><br/>
+  </div><br/>
+  <div><button type="button" style="color: black;"  (click)="goToPreviousPage(currentPage-1)">Pervious Page</button></div>
+</div>
+ 
+     
+
